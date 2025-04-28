@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 
 class MainActivity : AppCompatActivity() {
+    private var pendingNote: Note? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -15,5 +16,15 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+    }
+
+    fun setPendingNote(note: Note) {
+        pendingNote = note
+    }
+
+    fun consumePendingNote(): Note? {
+        val note = pendingNote
+        pendingNote = null
+        return note
     }
 }

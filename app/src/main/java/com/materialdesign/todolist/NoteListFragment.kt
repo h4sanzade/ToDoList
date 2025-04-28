@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.materialdesign.todolist.databinding.FragmentNoteListBinding
-
 class NoteListFragment : Fragment() {
 
     private var _binding: FragmentNoteListBinding? = null
@@ -43,13 +42,22 @@ class NoteListFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     fun addNewNote(note: Note) {
         noteAdapter.addNote(note)
-        binding.recyclerView.smoothScrollToPosition(0)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
+        (requireActivity() as? MainActivity)?.consumePendingNote()?.let { note ->
+            noteAdapter.addNote(note)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

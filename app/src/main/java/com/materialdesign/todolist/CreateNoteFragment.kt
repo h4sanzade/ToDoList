@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.materialdesign.todolist.databinding.FragmentCreateNoteBinding
-
 class CreateNoteFragment : Fragment() {
 
     private var _binding: FragmentCreateNoteBinding? = null
@@ -41,19 +40,17 @@ class CreateNoteFragment : Fragment() {
             val title = binding.etNoteTitle.text.toString().trim()
             val finalText = if (title.isNotEmpty()) "$title\n$noteText" else noteText
 
-            // Fix the color creation
-            val backgroundColor = ColorUtils.getRandomColor()
 
+            val backgroundColor = ColorUtils.getRandomColor()
             val note = Note(
                 text = finalText,
                 backgroundColor = backgroundColor
             )
 
-            // Find the parent fragment and pass the note
-            val navHostFragment = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-            val noteListFragment = navHostFragment?.childFragmentManager?.fragments?.first() as? NoteListFragment
 
-            noteListFragment?.addNewNote(note)
+            (requireActivity() as MainActivity).setPendingNote(note)
+
+
             findNavController().navigateUp()
         } else {
             Toast.makeText(requireContext(), "Note cannot be empty", Toast.LENGTH_SHORT).show()

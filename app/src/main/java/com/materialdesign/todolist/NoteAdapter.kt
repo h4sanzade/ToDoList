@@ -15,8 +15,8 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     private val notes = mutableListOf<Note>()
 
     fun addNote(note: Note) {
-        notes.add(note)
-        notifyItemInserted(notes.size - 1)
+        notes.add(0, note)
+        notifyItemInserted(0)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -31,6 +31,7 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         holder.bind(notes[position])
     }
+
 
     override fun getItemCount(): Int = notes.size
 

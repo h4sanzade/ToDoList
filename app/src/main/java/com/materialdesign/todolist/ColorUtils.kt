@@ -4,11 +4,11 @@ import androidx.core.graphics.toColorInt
 
 object ColorUtils {
     private val COLORS = listOf(
-        "#FFB6C1", // Light Pink
-        "#FFA07A", // Light Salmon
-        "#98FB98", // Pale Green
-        "#FFFACD", // Lemon Chiffon
-        "#AFEEEE"  // Pale Turquoise
+        "#FFB6C1",
+        "#FFA07A",
+        "#98FB98",
+        "#FFFACD",
+        "#AFEEEE"
     )
 
     fun getRandomColor(): Int {
